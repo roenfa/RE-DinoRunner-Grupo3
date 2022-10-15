@@ -27,8 +27,8 @@ class ObstacleManager:
         
         for obstacle in self.obstacles:
             obstacle.update(game.game_speed, self.obstacles)
-            if game.player.dino_rect.colliderect(obstacle.rect):
-                pygame.time.delay(100)
+            if game.player.dino_rect.colliderect(obstacle.rect) and game.player.shield == False:
+                game.show_message("¡LOSER!")
                 self.obstacles = []
                 game.player_heart_manager.reduce_heart()
                 if game.player_heart_manager.heart_count > 0:
@@ -38,6 +38,8 @@ class ObstacleManager:
                     game.playing = False
                     game.death_count +=1
                     break
+            elif game.player.dino_rect.colliderect(obstacle.rect) and game.player.shield == True:
+                game.show_message("¡HAHA!")
 
 
     def draw(self, screen):

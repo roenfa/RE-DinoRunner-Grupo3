@@ -28,6 +28,11 @@ class Game:
         self.player_heart_manager = PlayerHeartManager()
         self.power_up_manager = PowerUpManager()
     
+    def execute(self):
+        while self.running:
+            if not self.playing:
+                self.show_menu()
+    
     def run(self):
         # Game loop: events - update - draw
         self.obstacle_manager.reset_obstacles(self)
@@ -39,22 +44,25 @@ class Game:
             self.update()
             self.draw()
 
-    def execute(self):
-        while self.running:
-            if not self.playing:
-                self.show_menu()
-
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
                 self.running = False
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                self.player.dino_jump = True
+                self.update()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+                self.player.dino_duck = True
+                self.update()
+            elif event.type == self.player.timer_event:
+                self.player.shield = False
+            
         self.screen.fill((255,255,255))
 
     def update(self):
-        user_input = pygame.key.get_pressed()
-        ##########
         self.player.update()
+        ##########
         self.obstacle_manager.update(self)
         self.power_up_manager.update(self.game_speed, self.points, self.player)
 
@@ -117,10 +125,18 @@ class Game:
 
     def show_menu(self):
         self.running = True
-
         white_color = (255,255,255)
         self.screen.fill(white_color)
         self.print_menu_elements()
         pygame.display.update()
         self.handle_key_event_on_menu()
+    
+    def show_message(self, message):
+        half_screen_height = SCREEN_HEIGHT // 2
+        half_screen_width = SCREEN_WIDTH // 2
+        text, text_rect = text_utils.get_centered_message(message)
+        self.screen.blit(text, text_rect)
+
+        
+
 

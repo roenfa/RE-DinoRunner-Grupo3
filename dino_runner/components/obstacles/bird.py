@@ -11,5 +11,5 @@ class Bird(Obstacle):
         self.type = 0
         self.description = description
         super().__init__(self.image, self.type, self.description)
-        self.rect.y = 200
+        self.rect.y = 250
 

@@ -19,14 +19,16 @@ class PowerUpManager():
                 power_up.start_time = pygame.time.get_ticks()
                 player.shield = True
                 #power_up.start_time = pygame.time.get_ticks()
-                player.shield_time_up = power_up.start_time + (random.randrange(5,7) * 1000)
+                print(power_up.start_time)
+                player.shield_time_up = power_up.start_time + (random.randrange(1,2) * 1000)
+                pygame.time.set_timer(player.timer_event , player.shield_time_up)
                 self.power_ups.remove(power_up)
 
     def generate_power_ups(self, points):
         self.points = points
         if len(self.power_ups) == 0:
             if self.when_appears == points:
-                self.when_appears = random.randint(self.when_appears + 50, self.when_appears + 100)
+                self.when_appears = random.randint(self.when_appears + 500 , self.when_appears + 1000)
                 self.power_ups.append(Shield())
 
     def draw(self, screen):
