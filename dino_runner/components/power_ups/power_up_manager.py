@@ -18,7 +18,7 @@ class PowerUpManager():
             if player.dino_rect.colliderect(power_up.rect):
                 power_up.start_time = pygame.time.get_ticks()
                 player.shield = True
-                power_up.start_time = pygame.time.get_ticks()
+                #power_up.start_time = pygame.time.get_ticks()
                 player.shield_time_up = power_up.start_time + (random.randrange(5,7) * 1000)
                 self.power_ups.remove(power_up)
 
@@ -26,7 +26,7 @@ class PowerUpManager():
         self.points = points
         if len(self.power_ups) == 0:
             if self.when_appears == points:
-                self.when_appears = random.randint(self.when_appears + 200, self.when_appears + 500)
+                self.when_appears = random.randint(self.when_appears + 50, self.when_appears + 100)
                 self.power_ups.append(Shield())
 
     def draw(self, screen):

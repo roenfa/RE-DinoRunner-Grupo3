@@ -1,11 +1,10 @@
-import pygame
 from dino_runner.components import text_utils
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, RUNNING
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.player_heart.player_heart_manager import PlayerHeartManager
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
-
+import pygame
 
 
 class Game:
@@ -54,6 +53,7 @@ class Game:
 
     def update(self):
         user_input = pygame.key.get_pressed()
+        ##########
         self.player.update()
         self.obstacle_manager.update(self)
         self.power_up_manager.update(self.game_speed, self.points, self.player)
@@ -95,7 +95,7 @@ class Game:
                 pygame.display.quit()
                 pygame.quit()
                 exit()
-            if event.type == pygame.KEYDOWN:
+            elif event.type == pygame.KEYDOWN:
                 self.run()
 
     def print_menu_elements(self):
