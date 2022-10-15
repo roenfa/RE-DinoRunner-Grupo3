@@ -1,3 +1,4 @@
+from asyncio import shield
 import pygame
 import os
 
@@ -70,5 +71,5 @@ BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 DEFAULT_TYPE = "default"
-
-HEART_COUNT=4
+HEART_COUNT=7
+SHIELD_TYPE="shield"

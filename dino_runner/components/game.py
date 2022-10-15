@@ -5,7 +5,7 @@ from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS,RUNNING
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.player_hearts.player_hearth_manager import PlayerHeartManager
-
+from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 
 
 class Game:
@@ -27,6 +27,7 @@ class Game:
         self.death_count=0
 
         self.player_heart_manager=PlayerHeartManager()
+        self.power_up_manager=PowerUpManager()
        
     def run(self):
         # Game loop: events - update - draw
@@ -54,6 +55,7 @@ class Game:
         user_input=pygame.key.get_pressed()
         self.player.update()
         self.obstacle_manager.update(self)
+        self.power_up_manager.update(self.game_speed, self.points, self.player)
 
     def draw(self):
         self.score()
@@ -62,6 +64,7 @@ class Game:
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
         self.player_heart_manager.draw(self.screen)
+        self.power_up_manager.draw(self.screen)
 
         pygame.display.update()
         pygame.display.flip()

@@ -10,12 +10,12 @@ class Dinosaur(Sprite):
     
         self.image=RUNNING[0]
         self.dino_rect= self.image.get_rect()
-
-    
         self.dino_rect.x=self.X_POS
         self.dino_rect.y=self.Y_POS
-
         self.step_index = 0
+
+        self.shield=False
+        self.shield_time_up=0
 
 
     def update(self):
