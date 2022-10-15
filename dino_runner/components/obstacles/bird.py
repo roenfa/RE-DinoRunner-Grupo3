@@ -1,5 +1,6 @@
 
 #from dino_runner.components.obstacles.obstacle import Obstacle
+#GUSTAVO ESTUVO AQUÍ
 
 #class Bird(Obstacle):
     #def __init__(self, image):
