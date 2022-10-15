@@ -5,6 +5,7 @@ from pygame.sprite import Sprite
 
 
 class Cactus(Obstacle):
+    
 
     def __init__(self, image, description):
         self.image = image
